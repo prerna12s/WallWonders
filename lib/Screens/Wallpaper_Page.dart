@@ -54,6 +54,9 @@ class _Main_ScreenState extends State<Main_Screen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+
+      ),
       body: Column(
         children: [
          Expanded(child: Container(
@@ -68,16 +71,21 @@ class _Main_ScreenState extends State<Main_Screen> {
              );
            }),
          )),
-          Container(
-            height:50,
-            width: double.infinity,
-            color: Colors.black,
-            child: Center(
-              child: Text('LOAD MORE ',style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),),
+          GestureDetector(
+            onTap: (){
+              loadmore();
+            },
+            child: Container(
+              height:50,
+              width: double.infinity,
+              color: Colors.black,
+              child: Center(
+                child: Text('LOAD MORE ',style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),),
+              ),
             ),
           )
         ],
