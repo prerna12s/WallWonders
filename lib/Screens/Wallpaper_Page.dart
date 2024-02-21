@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
+import 'package:wallpaper_app/Screens/Full_screen.dart';
+
 
 
 
@@ -62,11 +64,18 @@ class _Main_ScreenState extends State<Main_Screen> {
          Expanded(child: Container(
            child: GridView.builder(itemCount:images.length,gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3,mainAxisSpacing:4,childAspectRatio:2/4,crossAxisSpacing: 5) ,
                itemBuilder: (context,index){
-             return Container(
-               color:Colors.white,
-               child: Image.network(
-                 images[index]['src']['tiny'],
-                 fit:BoxFit.cover,
+             return InkWell(
+               onTap: (){
+                Navigator.push(context,MaterialPageRoute(builder:(context) => Full_Page(
+                  Imageurl:images[index]['src']['large'],
+                )));
+               },
+               child: Container(
+                 color:Colors.white,
+                 child: Image.network(
+                   images[index]['src']['tiny'],
+                   fit:BoxFit.cover,
+                 ),
                ),
              );
            }),
