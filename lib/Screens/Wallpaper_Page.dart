@@ -17,18 +17,7 @@ class _Main_ScreenState extends State<Main_Screen> {
   List images =[];
   int page=1;
   @override
-  // loadmore()async{
-  //   setState(() {
-  //     page=page+1;
-  //   });
-  //   String url='https://api.pexels.com/v1/curated?per_page=80&page='+page.toString();
-  //   await http.get(Uri.parse(url),
-  //       headers: {'Authorization':'oe66crTvrJbHg0Daqt6QPS1MlFks9JC6LVj0AJfeM6KmC08HSufSJRiZ'}).then((value) {
-  //     Map response = jsonDecode(value.body);
-  //     setState(() {
-  //       images.addAll(response['photos']);
-  //     });
-  //   }
+
   void initState(){
     super.initState();
     fetchapi();
@@ -45,6 +34,23 @@ class _Main_ScreenState extends State<Main_Screen> {
 
     });
   }
+    loadmore()async {
+      setState(() {
+        page = page + 1;
+      });
+      String url = 'https://api.pexels.com/v1/curated?per_page=80&page=' +
+          page.toString();
+      await http.get(Uri.parse(url),
+          headers: {
+            'Authorization': 'oe66crTvrJbHg0Daqt6QPS1MlFks9JC6LVj0AJfeM6KmC08HSufSJRiZ'
+          }).then((value) {
+        Map response = jsonDecode(value.body);
+        setState(() {
+          images.addAll(response['photos']);
+        });
+      }
+      );
+    }
 
   Widget build(BuildContext context) {
     return Scaffold(
